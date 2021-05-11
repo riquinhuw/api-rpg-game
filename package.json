@@ -1,0 +1,25 @@
+{
+  "name": "api-rpg-game",
+  "version": "1.0.0",
+  "description": "A simple RPG game",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riquinhuw/api-rpg-game.git"
+  },
+  "author": "Riquinhuw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/riquinhuw/api-rpg-game/issues"
+  },
+  "homepage": "https://github.com/riquinhuw/api-rpg-game#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
