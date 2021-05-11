@@ -11,7 +11,8 @@ app.get('/', (req, res) => {
 app.get('/routes', (req, res) => {
     res.send(routes);
   })
-
+  
+  var dia = new Date();
   console.log("Starting RPG GAME API. "+String(dia.getDate()).padStart(2, '0')+"/"+String(dia.getMonth() + 1).padStart(2, '0')+"/"+dia.getFullYear()+" "+dia.getHours()+":"+dia.getMinutes()+":"+dia.getSeconds());
 
 
