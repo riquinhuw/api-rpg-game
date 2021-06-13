@@ -6,9 +6,14 @@ import repoAccount from './queries/accounts.js';
 import {config} from "dotenv-safe";
 import jwt from 'jsonwebtoken';
 import accounts from './queries/accounts.js';
-import utils from './utils/utils.js'
+import scoreTemp from './queries/scoreTemp.js';
+import utils from './utils/utils.js';
+import accountsController from './controller/accountsController.js';
+import helmet from 'helmet';
+
 //import * as repoAccount from "./queries/accounts.js";
 app.use(express.json());
+app.use(helmet());
 
 app.get('/', (req, res) => {
   res.send(wellcome);
@@ -18,10 +23,8 @@ app.get('/routes', (req, res) => {
     res.send(routes);
   });
 
-app.get('/accounts',(req,res)=>{
-  res.send(repoAccount.getUsers());
-});
 
+/*
 //authentication
 app.post('/login', (req, res, next) => {
   //esse teste abaixo deve ser feito no seu banco de dados
@@ -36,13 +39,27 @@ app.post('/login', (req, res, next) => {
   
   res.status(500).json({message: 'Login inválido!'});
 });
-
+*/
 app.post('/logout', function(req, res) {
   res.json({ auth: false, token: null });
 });
 
 app.post('/create', function(req, res) {
   res.send(accounts.createUser(req));
+});
+
+app.post('/login', async function(req, res) {
+  let retorno = await accountsController.logingAccount(req);
+  res.send(retorno);
+});
+
+app.get('/tempscore', async function name(req,res) {
+  let reotrno = await scoreTemp.getAllScore()
+  res.json(reotrno).status(200).json;
+});
+
+app.post('/tempscore',function name(req,res) {
+  res.send(scoreTemp.insertScore(req.body));
 });
   
 utils.log("Starting RPG GAME API")
