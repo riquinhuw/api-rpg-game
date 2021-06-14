@@ -55,7 +55,7 @@ app.post('/login', async function(req, res) {
 
 app.get('/tempscore', async function name(req,res) {
   let reotrno = await scoreTemp.getAllScore()
-  res.json(reotrno).status(200).json;
+  res.json(reotrno).status(200);
 });
 
 app.post('/tempscore',function name(req,res) {
