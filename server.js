@@ -53,12 +53,13 @@ app.post('/login', async function(req, res) {
   res.send(retorno);
 });
 
-app.get('/tempscore', async function name(req,res) {
-  let reotrno = await scoreTemp.getAllScore()
-  res.json(reotrno).status(200);
+
+app.get('/tempscore', async function (req,res) {
+  let reotrno = await scoreTemp.getAllScore();
+  res.status(200).json(reotrno);
 });
 
-app.post('/tempscore',function name(req,res) {
+app.post('/tempscore',function (req,res) {
   res.send(scoreTemp.insertScore(req.body));
 });
   
