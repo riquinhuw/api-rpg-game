@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/riquinhuw/api-rpg-game#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "crypto-js": "^4.0.0",
     "dotenv": "^9.0.2",
     "dotenv-safe": "^8.2.0",
