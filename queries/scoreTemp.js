@@ -21,7 +21,7 @@ const pool = new pg.Pool({
 
 async function getAllScore(){
   const client = await pool.connect()
-    let retorno = await client.query('SELECT * FROM score_temp ORDER BY score desc')
+    let retorno = await client.query('SELECT * FROM score_temp where score is not null and nick is not nullORDER BY score desc')
     client.release(true)
     return retorno.rows;
   
