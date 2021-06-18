@@ -10,10 +10,12 @@ import scoreTemp from './queries/scoreTemp.js';
 import utils from './utils/utils.js';
 import accountsController from './controller/accountsController.js';
 import helmet from 'helmet';
+import cors from ('cors')
 
 //import * as repoAccount from "./queries/accounts.js";
 app.use(express.json());
 app.use(helmet());
+app.use(cors());
 
 app.get('/', (req, res) => {
   res.send(wellcome);
