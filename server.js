@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(cors());
 app.use(router);
-
+//TODO: use conection Pool :smile:
 /*
 //authentication
 app.post('/login', (req, res, next) => {

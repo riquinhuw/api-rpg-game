@@ -14,7 +14,9 @@ const redisConfig= {
 }
 
 
-const redis = new Redis(REDIS_STRING); // uses defaults unless given configuration object
+function redisTest () {
+  let retorno ='';
+  const redis = new Redis(REDIS_STRING); // uses defaults unless given configuration object
 redis.on('error',function(err){ console.error(err)})
 // ioredis supports all Redis commands:
 redis.set("foo", "bar"); // returns promise which resolves to string, "OK"
@@ -28,5 +30,15 @@ redis.get("foo", function (err, result) {
     console.error(err);
   } else {
     console.log(result); // Promise resolves to "bar"
+    retorno=result;
   }
+  return retorno;
 });
+
+}
+
+
+
+export default  {
+  redisTest
+}

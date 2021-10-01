@@ -4,6 +4,7 @@ import {routes} from './infos/routes.js';
 import accounts from './queries/accounts.js';
 import scoreTemp from './queries/scoreTemp.js';
 import accountsController from './controller/accountsController.js';
+import rt from './queries/redisToken';
 
 const router = Router();
 
@@ -33,6 +34,10 @@ router.get('/tempscore', async function (req, res) {
 
 router.post('/tempscore',async function (req, res) {
     res.send(await scoreTemp.insertScore(req.body));
+});
+
+router.get('/redistest',async function (req,res) {
+   res.send(await rt.redisTest()); 
 });
 
 
