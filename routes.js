@@ -4,7 +4,7 @@ import {routes} from './infos/routes.js';
 import accounts from './queries/accounts.js';
 import scoreTemp from './queries/scoreTemp.js';
 import accountsController from './controller/accountsController.js';
-import rt from './queries/redisToken';
+import rt from './queries/redisToken.js';
 
 const router = Router();
 
