@@ -2,6 +2,7 @@ import pg from 'pg';
 import dotenv from 'dotenv';
 import crypto from 'crypto-js';
 import utils from '../utils/utils.js'
+import jwt from 'jsonwebtoken';
 dotenv.config();
 pg.defaults.ssl = true;
 
@@ -19,7 +20,7 @@ const pool = new pg.Pool({
 })
 
 
-const getUsers = (request, response) => {
+const getUsers = (request , response) => {
     pool.query('SELECT * FROM accounts ORDER BY user_id ASC', (error, results) => {
       if (error) {
         throw error
@@ -31,8 +32,6 @@ const getUsers = (request, response) => {
 
 
   async function getUserByLogin (username) {
-  
-    
      const client = await pool.connect()
      let retorno = await client.query('SELECT * FROM accounts WHERE username = $1', [username])
      client.release(true)
@@ -48,9 +47,7 @@ const getUsers = (request, response) => {
         switch (error.constraint) {// in the future we will use email too :))
           case 'accounts_username_key':
             utils.log(`The username ${username} is already in use`);
-            return utils.feedback(201,'The username is already in use',username);
-            break;
-        
+            return utils.feedback(201,'The username is already in use',username);        
           default:
             break;
         }
@@ -99,27 +96,20 @@ const getUsers = (request, response) => {
   }
 
 
-   async function loginInGame (body){
+   async function loginInGame (body){// TODO: Return Passwrod or User wrong
     var findUser = await getUserByLogin(body.username);
     debugger
-    if (findUser) {
-      if(findUser.password == crypto.MD5(body.password).toString()){
-        return utils.feedback('success','The login has done',{token:findUser.token});
-      }else{
-        return utils.feedback('fail','The password was wrong',{'text':'erro senha'});
-      }
-      
-    }else{
-      return utils.feedback('fail','User not found',{'texto':'Erro login'});
-    }
 
+      if(findUser && findUser.password == crypto.MD5(body.password).toString())
+        return utils.feedback('success','The login has done',{token:findUser.token});
+      return utils.feedback('fail','User or password was wrong',{'texto':'Erro login'});
   }
 
   export default  {
     getUsers,
     getUserById,
     createUser,
-    updateUser,
+    updateUser, 
     deleteUser,
     loginInGame,
   }

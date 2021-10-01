@@ -5,26 +5,18 @@ import {routes} from './infos/routes.js';
 import repoAccount from './queries/accounts.js';
 import {config} from "dotenv-safe";
 import jwt from 'jsonwebtoken';
-import accounts from './queries/accounts.js';
-import scoreTemp from './queries/scoreTemp.js';
 import utils from './utils/utils.js';
 import accountsController from './controller/accountsController.js';
+import {router} from "./routes.js";
 import helmet from 'helmet';
-import cors from ('cors')
+import cors from 'cors';
+import { body, validationResult } from'express-validator';
 
 //import * as repoAccount from "./queries/accounts.js";
 app.use(express.json());
 app.use(helmet());
 app.use(cors());
-
-app.get('/', (req, res) => {
-  res.send(wellcome);
-});
-
-app.get('/routes', (req, res) => {
-    res.send(routes);
-  });
-
+app.use(router);
 
 /*
 //authentication
@@ -42,28 +34,31 @@ app.post('/login', (req, res, next) => {
   res.status(500).json({message: 'Login inválido!'});
 });
 */
-app.post('/logout', function(req, res) {
-  res.json({ auth: false, token: null });
-});
 
-app.post('/create', function(req, res) {
-  res.send(accounts.createUser(req));
-});
+// ...rest of the initial code omitted for simplicity.
 
-app.post('/login', async function(req, res) {
-  let retorno = await accountsController.logingAccount(req);
-  res.send(retorno);
-});
+/*
+// Express validator
+app.post(
+  '/user',
+  // username must be an email
+  body('username').isEmail(),
+  // password must be at least 5 chars long
+  body('password').isLength({ min: 5 }),
+  (req, res) => {
+    // Finds the validation errors in this request and wraps them in an object with handy functions
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
 
-
-app.get('/tempscore', async function (req,res) {
-  let reotrno = await scoreTemp.getAllScore();
-  res.status(200).json(reotrno);
-});
-
-app.post('/tempscore',function (req,res) {
-  res.send(scoreTemp.insertScore(req.body));
-});
+    User.create({
+      username: req.body.username,
+      password: req.body.password,
+    }).then(user => res.json(user));
+  },
+);
+*/
   
 utils.log("Starting RPG GAME API")
 
