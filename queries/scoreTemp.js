@@ -35,7 +35,7 @@ async function getAllScore(){
         console.log("Oh no, some errore happen :c");
         throw error
       }
-       return utils.feedback(201,'Score was added',nick);
+       return utils.feedback(201,'sucess','Score was added',nick);
     })
   }
 

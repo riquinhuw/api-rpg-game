@@ -7,7 +7,7 @@ import {config} from "dotenv-safe";
 import jwt from 'jsonwebtoken';
 import utils from './utils/utils.js';
 import accountsController from './controller/accountsController.js';
-import {router} from "./routes.js";
+import {router} from "./routes/routes.js";
 import helmet from 'helmet';
 import cors from 'cors';
 import { body, validationResult } from'express-validator';
@@ -60,7 +60,7 @@ app.post(
 );
 */
   
-utils.log("Starting RPG GAME API")
+utils.log("Starting RPG GAME API 0.0.1")
 
   app.listen(process.env.PORT || 3333, ()=>{
     //console.log('Listen in port 3333.');

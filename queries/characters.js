@@ -1,8 +1,6 @@
 import pg from 'pg';
 import dotenv from 'dotenv';
-import crypto from 'crypto-js';
 import utils from '../utils/utils.js'
-import jwt from 'jsonwebtoken';
 dotenv.config();
 pg.defaults.ssl = true;
 //TODO: change the Http status code
@@ -21,7 +19,7 @@ const pool = new pg.Pool({
 
 
 const getUsers = (request , response) => {
-    pool.query('SELECT * FROM accounts ORDER BY user_id ASC', (error, results) => {
+    pool.query('SELECT * FROM user_character ORDER BY user_character_id ASC', (error, results) => {
       if (error) {
         throw error
       }
@@ -31,9 +29,9 @@ const getUsers = (request , response) => {
 
 
 
-  async function getUserByLogin (username) {
+  async function getUserByLogin (userId) {
      const client = await pool.connect()
-     let retorno = await client.query('SELECT * FROM accounts WHERE username = $1', [username])
+     let retorno = await client.query('SELECT * FROM user_character WHERE user_id = $1', [userId])
      client.release(true)
      return retorno.rows[0];
 

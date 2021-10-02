@@ -1,10 +1,9 @@
 import { Router } from "express";
-import {wellcome} from './infos/wellcome.js';
-import {routes} from './infos/routes.js';
-import accounts from './queries/accounts.js';
-import scoreTemp from './queries/scoreTemp.js';
-import accountsController from './controller/accountsController.js';
-import rt from './queries/redisToken.js';
+import {wellcome} from '../infos/wellcome.js';
+import {routes} from '../infos/routes.js';
+import accounts from '../queries/accounts.js';
+import scoreTemp from '../queries/scoreTemp.js';
+import accountsController from '../controller/accountsController.js';
 
 const router = Router();
 

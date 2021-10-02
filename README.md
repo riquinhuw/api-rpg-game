@@ -4,7 +4,7 @@
 
 - [About](#about)
 - [Usage](#usage)
-- [Contributing](../CONTRIBUTING.md)
+- [Changelog](./CHANGELOG.md)
 
 ## About <a name = "about"></a>
 
