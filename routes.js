@@ -36,10 +36,5 @@ router.post('/tempscore',async function (req, res) {
     res.send(await scoreTemp.insertScore(req.body));
 });
 
-router.get('/redistest',async function (req,res) {
-   res.send(await rt.redisTest()); 
-});
-
-
 
 export { router }

@@ -3,9 +3,19 @@ import dotenv from 'dotenv';
 dotenv.config();
 const {REDIS_HOST,REDIS_PORT,REDIS_PASSWORD,REDIS_STRING} = process.env;
 
+/**
+ * Yo! idk why, but i cant use the Redis on Node ;-;
+ * i got this erro:
+ * Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:211:20) {
+  errno: -104,
+  code: 'ECONNRESET',
+  syscall: 'read'
+}
+ * if you know how i can resolve this, plz share <3 
+ */
 
 const redisConfig= {
-
     host:REDIS_HOST,
     port:REDIS_PORT,
     password:REDIS_PASSWORD,

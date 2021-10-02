@@ -1,4 +1,17 @@
+import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';//SECRET_JWT
+dotenv.config();
+let {SECRET_JWT} = process.env;
 
+console.log(jwt.sign({id:123333},'teste',{expiresIn:"7d"}));
+
+
+
+function isValidToken(token) {
+    jwt.verify(token,SECRET_JWT,(err,token)=>{
+        return !err ? true : false
+    });
+}
 
 function log(mensagem) {
     var now = new Date();
